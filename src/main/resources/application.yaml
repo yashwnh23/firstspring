@@ -4,29 +4,18 @@ server:
   servlet:
     context-path: /v1/api
 
----
-spring:
-  profiles: PROD
-  datasource:
-    url: jdbc:mysql://localhost:3306/soma
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dml-auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
----
 
 spring:
-  profiles: LOCAL
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
   datasource:
     url: jdbc:mysql://localhost:3306/soma
     username: root
     password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -38,6 +27,4 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 ---
-
-
 

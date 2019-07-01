@@ -1,46 +1,45 @@
 package first_package.db.repository;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
+    @Id
     private String id;
-    private String userName;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String password;
 
     public String getId(){
         return id;
     }
-    public String getUserName(){
-        return userName;
+    public String getName(){
+        return name;
     }
-    public String getLastName(){
-        return lastName;
-    }
-    public String getFirstName(){
-        return firstName;
+    public String getPassword(){
+        return password;
     }
     public void setId(String id){
         this.id = id;
     }
-    public void setUserName(String userName){
-        this.userName = userName;
+    public void setName(String name){
+        this.name = name;
     }
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
+    public void setPassword(String password){
+        this.password = password;
     }
 
 }
