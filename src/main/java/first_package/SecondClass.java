@@ -1,10 +1,14 @@
 package first_package;
 
+import first_package.db.repository.RedisRepo;
+import first_package.db.repository.RedisRepository;
 import first_package.db.repository.User;
 import first_package.db.repository.model.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +18,7 @@ public class SecondClass {
     @Autowired
     private users users1;
     public User user;
+    private RedisRepository redisRepository;
 
     @RequestMapping(value = "/username/{name}", method = RequestMethod.GET)
 
@@ -56,5 +61,15 @@ public class SecondClass {
         return users1.findTopByNameContainingOrderByIdAsc(name);
     }
 
+    @PostMapping("/insert")
+    public RedisRepo insert(@RequestBody RedisRepo rp){
+        return redisRepository.save(rp);
+    }
+    @GetMapping("/findall")
+    public List<RedisRepo> findAll(){
+        List<RedisRepo> students = new ArrayList<>();
+        redisRepository.findAll().forEach(students::add);
+        return students;
+    }
 
 }
